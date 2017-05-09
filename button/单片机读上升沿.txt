@@ -1,0 +1,37 @@
+if(m3_0 == 1)
+	m30=1;
+if( (m3_0==0) && (m30==1) )
+{
+	send = 1;
+	m30 = 0;
+}
+
+
+读p2.0 存在A
+再读P2.0存在B
+A>B?
+  是，下降沿
+A<B
+  是，上升沿
+
+然后B存入A，进行下一次判断。
+
+如A=B
+就无上升或下降
+注意是位操作
+
+用汇编不难。
+	SETB	X0BIT
+	SETB	X0BITL
+
+LOOP:
+	MOV C, P2.0
+	MOV X0BIT, C
+	JB X0BIT, LR1
+	JNB X0BITL, LR1
+	NOP ;下降沿来了
+
+LR1:     
+    MOV C, X0BIT
+    MOV X0BITL, C ;保存本次状态供下次使用
+    LJMP LOOP

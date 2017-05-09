@@ -1,0 +1,24 @@
+void Scan()
+{
+    if ( 0 == Key1 )
+    {
+    	delay(20);
+    	if ( 0 == Key1 )
+    	{
+    		LED = ~LED;          //等待松手
+    		while ( 0 == Key1 ); //保证松手前状态只改变一次
+    	}
+    }
+}
+
+//下面是旧版代码，你一直按灯肯定会闪
+void Scan() 
+{
+	delay(50);
+	if ( 0 == Key1 )
+	{
+		P1 = ~P1; 
+		delay(200);	
+	}	
+	return;
+}
