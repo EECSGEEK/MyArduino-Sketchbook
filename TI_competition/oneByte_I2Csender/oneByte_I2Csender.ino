@@ -22,3 +22,20 @@ void requestEvent() {
     uint8_t AD_8bit = analogRead(A0);
     Wire.write(AD_8bit);
 }
+
+#if 0
+from subprocess import getoutput
+getoutput('sudo killall pigpiod')
+print( getoutput('sudo pigpiod -p 9999 -s 4') )
+import pigpio
+pi = pigpio.pi(port=9999)
+
+BUS=1
+DUE_ADDR=0x1E
+Due = pi.i2c_open(BUS, DUE_ADDR)
+
+import time
+start = time.time()
+while time.time()-start < 15:
+    print( i2c_read_byte(Due) )
+#endif
